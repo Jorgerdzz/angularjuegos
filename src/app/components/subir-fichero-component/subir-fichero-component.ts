@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ServiceFichero } from '../../services/service.ficheros';
 import { Fichero } from '../../models/fichero';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-testingfiles',
-  templateUrl: './testingfiles.component.html',
-  styleUrl: './testingfiles.component.css'
+  templateUrl: './subir-fichero-component.html',
+  styleUrl: './subir-fichero-component.css',
+  imports: [FormsModule]
 })
 export class SubirFicheroComponent implements OnInit {
   @ViewChild("cajafile") cajaFileRef!: ElementRef;

@@ -1,0 +1,24 @@
+<div>
+    @if(carga){
+        <div class="card" style="width: 18rem;">
+            <img src="{{equipo.imagen}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{equipo.nombre}}</h5>
+                <p class="card-text">Champions: {{equipo.champions}}</p>
+                <p class="card-text">Descripcion: {{equipo.descripcion}}</p>
+            </div>
+        </div>
+        @for(jugador of jugadores; track jugador){
+            <div class="card" style="width: 18rem;">
+                <img src="{{jugador.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{jugador.nombre}}</h5>
+                    <p class="card-text">Nacimiento: {{jugador.fechaNacimiento}}</p>
+                    <p class="card-text">Descripcion: {{jugador.pais}}</p>
+                </div>
+            </div>
+        }
+    }@else{
+        <img src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif"/>
+    }
+</div>
