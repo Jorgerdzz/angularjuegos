@@ -1,0 +1,12 @@
+<h1>Test Files Post</h1>
+<form #fileForm="ngForm">
+    <label>Seleccione fichero</label>
+    <input type="file" name="cajafile" #cajafile/><br/>
+    <button (click)="subirFichero()">
+        Subir fichero
+    </button>
+</form>
+<p>{{fileContent}}</p>
+@if (urlFileUpload){
+    <img src={{urlFileUpload}}/>
+}

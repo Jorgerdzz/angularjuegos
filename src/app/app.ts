@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SubirFicheroComponent } from './components/subir-fichero-component/subir-fichero-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SubirFicheroComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
