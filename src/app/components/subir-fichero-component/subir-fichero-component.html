@@ -1,12 +1,25 @@
-<h1>Test Files Post</h1>
-<form #fileForm="ngForm">
-    <label>Seleccione fichero</label>
-    <input type="file" name="cajafile" #cajafile/><br/>
-    <button (click)="subirFichero()">
-        Subir fichero
-    </button>
-</form>
-<p>{{fileContent}}</p>
-@if (urlFileUpload){
-    <img src={{urlFileUpload}}/>
-}
+<section class="upload-shell page-section">
+  <article class="upload-card glass-card">
+    <div class="upload-card__header">
+      <p class="chip">Laboratorio</p>
+      <h2>Centro de cargas</h2>
+      <p class="text-muted">
+        Comparte ficheros o recursos multimedia con tu staff técnico de forma rápida y segura.
+      </p>
+    </div>
+    <form #fileForm="ngForm" class="upload-form">
+      <label class="upload-input">
+        <span>Seleccione un fichero</span>
+        <input type="file" name="cajafile" #cajafile />
+      </label>
+      <button type="button" class="cta-button" (click)="subirFichero()">Subir fichero</button>
+    </form>
+    <p class="upload-output">{{ fileContent }}</p>
+    @if (urlFileUpload){
+    <figure class="upload-preview">
+      <img src="{{ urlFileUpload }}" alt="Vista previa del fichero subido" />
+      <figcaption class="text-muted">Vista previa</figcaption>
+    </figure>
+    }
+  </article>
+</section>

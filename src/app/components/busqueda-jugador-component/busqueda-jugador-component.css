@@ -1,0 +1,43 @@
+.busqueda-shell {
+	width: min(1200px, 100%);
+	margin: 0 auto;
+}
+
+.busqueda-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1.5rem;
+}
+
+.busqueda-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.busqueda-card__media {
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	aspect-ratio: 4 / 3;
+}
+
+.busqueda-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.busqueda-card__body h4 {
+	margin: 0;
+	font-size: 1.1rem;
+}
+
+.busqueda-card__pill {
+	display: inline-flex;
+	margin-top: 0.5rem;
+	padding: 0.3rem 0.85rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	color: var(--color-text);
+	font-size: 0.85rem;
+}

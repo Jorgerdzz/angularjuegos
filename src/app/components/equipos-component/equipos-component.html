@@ -1,24 +1,48 @@
-<div>
-    @if(carga){
-        <div class="card" style="width: 18rem;">
-            <img src="{{equipo.imagen}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{equipo.nombre}}</h5>
-                <p class="card-text">Champions: {{equipo.champions}}</p>
-                <p class="card-text">Descripcion: {{equipo.descripcion}}</p>
-            </div>
+<section class="equipos-shell page-section">
+  @if(carga){
+  <article class="equipos-resumen glass-card">
+    <div class="equipos-resumen__media">
+      <img [src]="equipo.imagen" alt="Escudo {{ equipo.nombre }}" />
+    </div>
+    <div class="equipos-resumen__body">
+      <p class="chip">Club destacado</p>
+      <h2>{{ equipo.nombre }}</h2>
+      <p class="equipos-resumen__descripcion">{{ equipo.descripcion }}</p>
+      <div class="equipos-resumen__stats">
+        <div class="stat-card">
+          <span class="stat-card__label">Champions</span>
+          <strong class="stat-card__value">{{ equipo.champions }}</strong>
         </div>
-        @for(jugador of jugadores; track jugador){
-            <div class="card" style="width: 18rem;">
-                <img src="{{jugador.imagen}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{jugador.nombre}}</h5>
-                    <p class="card-text">Nacimiento: {{jugador.fechaNacimiento}}</p>
-                    <p class="card-text">Descripcion: {{jugador.pais}}</p>
-                </div>
-            </div>
-        }
-    }@else{
-        <img src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif"/>
+        <div class="stat-card">
+          <span class="stat-card__label">Jugadores</span>
+          <strong class="stat-card__value">{{ jugadores.length }}</strong>
+        </div>
+      </div>
+    </div>
+  </article>
+  <div class="faded-divider"></div>
+  <h3 class="section-heading">Plantilla actual</h3>
+  <div class="equipos-grid">
+    @for(jugador of jugadores; track jugador){
+    <article class="jugador-card glass-card">
+      <div class="jugador-card__media">
+        <img [src]="jugador.imagen" alt="Foto de {{ jugador.nombre }}" />
+      </div>
+      <div class="jugador-card__body">
+        <h4>{{ jugador.nombre }}</h4>
+        <p class="text-muted">Nacimiento: {{ jugador.fechaNacimiento }}</p>
+        <p class="jugador-card__tag">{{ jugador.pais }}</p>
+      </div>
+    </article>
     }
-</div>
+  </div>
+  }@else{
+  <div class="equipos-loading glass-card">
+    <img
+      src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif"
+      alt="Cargando"
+    />
+    <p class="text-muted">Cargando datos del club...</p>
+  </div>
+  }
+</section>

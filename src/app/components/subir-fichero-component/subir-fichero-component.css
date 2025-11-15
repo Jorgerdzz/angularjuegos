@@ -1,0 +1,69 @@
+.upload-shell {
+	width: min(900px, 100%);
+	margin: 0 auto;
+}
+
+.upload-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.upload-card__header h2 {
+	margin: 0.5rem 0 0.75rem;
+	font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.upload-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+}
+
+.upload-input {
+	flex: 1;
+	min-width: 240px;
+	padding: 1rem;
+	border: 1px dashed rgba(255, 255, 255, 0.25);
+	border-radius: var(--radius-md);
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+	color: var(--color-muted);
+	cursor: pointer;
+	background: rgba(255, 255, 255, 0.03);
+}
+
+.upload-input input[type="file"] {
+	color: var(--color-text);
+}
+
+.upload-output {
+	min-height: 2rem;
+	font-size: 0.95rem;
+	color: var(--color-muted);
+}
+
+.upload-preview {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	border-radius: var(--radius-md);
+	overflow: hidden;
+}
+
+.upload-preview img {
+	width: 100%;
+	border-radius: var(--radius-md);
+	object-fit: cover;
+	max-height: 320px;
+}
+
+@media (max-width: 640px) {
+	.upload-form {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}

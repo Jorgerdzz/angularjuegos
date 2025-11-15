@@ -21,7 +21,13 @@ export class ServiceFutbol{
         let url = environment.urlApiEjemplos + request;
         // return this._http.get<Array<Jugador>>(url);
         return this._http.get<Array<Jugador>>(url).pipe(delay(4000));
-    }  
+    }
+    
+    getJugadorPorNombre(nombreJugador: string): Observable<Array<Jugador>>{
+        let url = environment.urlApiEjemplos;
+        let request = "api/Jugadores/BuscarJugadores/" + nombreJugador;
+        return this._http.get<Array<Jugador>>(url + request);
+    }
 
 
 	findEquipo(idEquipo: number): Observable<Equipo> {

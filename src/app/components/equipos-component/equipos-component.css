@@ -1,0 +1,124 @@
+.equipos-shell {
+	width: min(1200px, 100%);
+	margin: 0 auto 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.equipos-resumen {
+	display: grid;
+	grid-template-columns: 260px 1fr;
+	gap: 2rem;
+	align-items: center;
+}
+
+.equipos-resumen__media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.equipos-resumen__media img {
+	max-width: 210px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.45));
+}
+
+.equipos-resumen__body h2 {
+	font-size: clamp(2rem, 4vw, 3rem);
+	margin: 0.35rem 0 0.85rem;
+}
+
+.equipos-resumen__descripcion {
+	color: var(--color-muted);
+	line-height: 1.6;
+	margin-bottom: 1.25rem;
+}
+
+.equipos-resumen__stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.stat-card {
+	padding: 1rem 1.25rem;
+	border-radius: var(--radius-md);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: rgba(255, 255, 255, 0.03);
+	min-width: 150px;
+}
+
+.stat-card__label {
+	font-size: 0.85rem;
+	color: var(--color-muted);
+}
+
+.stat-card__value {
+	font-size: 1.8rem;
+	letter-spacing: 0.06em;
+}
+
+.equipos-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.5rem;
+}
+
+.jugador-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.jugador-card__media {
+	border-radius: var(--radius-md);
+	overflow: hidden;
+}
+
+.jugador-card__media img {
+	height: 220px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.jugador-card__body h4 {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+.jugador-card__tag {
+	margin-top: 0.5rem;
+	display: inline-flex;
+	padding: 0.2rem 0.65rem;
+	border-radius: 999px;
+	background: rgba(72, 210, 254, 0.15);
+	color: var(--color-accent);
+	font-size: 0.85rem;
+}
+
+.equipos-loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	width: min(480px, 100%);
+	margin: 4rem auto 0;
+}
+
+.equipos-loading img {
+	width: 180px;
+}
+
+@media (max-width: 768px) {
+	.equipos-resumen {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+
+	.equipos-resumen__stats {
+		justify-content: center;
+	}
+}
