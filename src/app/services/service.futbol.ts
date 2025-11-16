@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment.development";
 import { Observable, delay } from "rxjs";
@@ -48,6 +48,20 @@ export class ServiceFutbol{
             equipo: this.findEquipo(idEquipo),
             jugadores: this.getJugadoresEquipo(idEquipo)
         })
+    }
+
+    insertJugador(jugador: Jugador): Observable<any>{
+        let url = environment.urlApiEjemplos;
+        let request = "api/Jugadores";
+        let header = new HttpHeaders();
+        header = header.set("Content-Type", "application/json")
+        return this._http.post(url + request, jugador, {headers: header})
+    }
+
+    deleteJugador(idJugador: number): Observable<any>{
+        let url = environment.urlApiEjemplos;
+        let request = "api/Jugadores/" + idJugador;
+        return this._http.delete(url + request)
     }
 
 

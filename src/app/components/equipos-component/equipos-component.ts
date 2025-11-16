@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Equipo } from '../../models/equipo';
 import { ServiceFutbol } from '../../services/service.futbol';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Jugador } from '../../models/jugador';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-equipos-component',
@@ -20,12 +21,17 @@ export class EquiposComponent implements OnInit{
 
   constructor(
     private _service:ServiceFutbol,
-    private _activeRoute:ActivatedRoute
+    private _activeRoute:ActivatedRoute,
+    private _router: Router
   ){
     this.carga=false
   }
 
   ngOnInit(): void {
+    this.getDatosEquipo();
+  }
+  
+  getDatosEquipo(): void{
     this._activeRoute.params.subscribe((params: Params)=>{
       let idEquipo = params['id'];
       this._service.getDatosEquipo(idEquipo).subscribe(result=>{
@@ -38,6 +44,29 @@ export class EquiposComponent implements OnInit{
 
   resetCarga(): void{
     this.carga = !this.carga
+  }
+
+  eliminarJugador(idJugador: number): void{
+    Swal.fire({
+      icon: 'question',
+      title: '¿Deseas eliminar el jugador definitivamente?',
+      timer: 3000,
+      timerProgressBar: true,
+      showCancelButton: true,
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this._service.deleteJugador(idJugador).subscribe(()=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Jugador eliminado correctamente',
+            timer: 3000,
+            timerProgressBar: true
+          }).then(()=>{
+            this.getDatosEquipo();
+          })
+        })
+      }
+    })
   }
 
 

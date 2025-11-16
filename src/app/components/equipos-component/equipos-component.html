@@ -30,9 +30,10 @@
       </div>
       <div class="jugador-card__body">
         <h4>{{ jugador.nombre }}</h4>
-        <p class="text-muted">Nacimiento: {{ jugador.fechaNacimiento }}</p>
+        <p>Nacimiento: {{ jugador.fechaNacimiento }}</p>
         <p class="jugador-card__tag">{{ jugador.pais }}</p>
       </div>
+      <button (click)="eliminarJugador(jugador.idJugador)" class="btn btn-danger">Eliminar jugador</button>
     </article>
     }
   </div>
@@ -42,7 +43,7 @@
       src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif"
       alt="Cargando"
     />
-    <p class="text-muted">Cargando datos del club...</p>
+    <p>Cargando datos del club...</p>
   </div>
   }
 </section>

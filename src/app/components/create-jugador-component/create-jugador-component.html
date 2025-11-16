@@ -1,0 +1,85 @@
+<section class="create-shell page-section">
+  <article class="create-card glass-card">
+    <div class="create-card__header">
+      <p class="chip">Gestión de plantilla</p>
+      <h2>Crear jugador</h2>
+      <p class="text-muted">
+        Completa el formulario para añadir un nuevo jugador a la base de datos.
+      </p>
+    </div>
+    <form #createForm="ngForm" (ngSubmit)="insertJugador()" class="create-form">
+      <div class="form-field">
+        <label class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-input"
+          name="cajanombre"
+          #cajanombre="ngModel"
+          [(ngModel)]="jugador.nombre"
+          placeholder="Ej: Lionel Messi"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Posición</label>
+        <input
+          type="text"
+          class="form-input"
+          name="cajaposicion"
+          #cajaposicion="ngModel"
+          [(ngModel)]="jugador.posicion"
+          placeholder="Ej: Delantero"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label">URL Imagen</label>
+        <input
+          type="text"
+          class="form-input"
+          name="cajaimagen"
+          #cajaimagen="ngModel"
+          [(ngModel)]="jugador.imagen"
+          placeholder="https://..."
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Fecha nacimiento</label>
+        <input
+          type="text"
+          class="form-input"
+          name="cajafecha"
+          #cajafecha="ngModel"
+          [(ngModel)]="jugador.fechaNacimiento"
+          placeholder="DD/MM/YYYY"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label">País</label>
+        <input
+          type="text"
+          class="form-input"
+          name="cajapais"
+          #cajapais="ngModel"
+          [(ngModel)]="jugador.pais"
+          placeholder="Ej: Argentina"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Seleccione equipo</label>
+        <select
+          class="form-select"
+          name="selectequipo"
+          #selectequipo="ngModel"
+          [(ngModel)]="jugador.idEquipo"
+        >
+          @for(equipo of equipos; track equipo){
+          <option [ngValue]="equipo.idEquipo">{{ equipo.nombre }}</option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="cta-button create-submit">
+        Insertar jugador
+        <span aria-hidden="true">⚽</span>
+      </button>
+    </form>
+  </article>
+</section>

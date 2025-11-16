@@ -16,6 +16,7 @@
           }
         </div>
       </div>
+      <a [routerLink]="['/create']" class="menu-link">Crear jugador</a>
       <a [routerLink]="['/upload']" class="menu-link">Subir fichero</a>
     </nav>
     <form #busquedaForm="ngForm" (ngSubmit)="buscarJugador()" class="menu-search" role="search">
