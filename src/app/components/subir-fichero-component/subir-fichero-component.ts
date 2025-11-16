@@ -1,54 +1,60 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ServiceFichero } from '../../services/service.ficheros';
 import { Fichero } from '../../models/fichero';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-testingfiles',
   templateUrl: './subir-fichero-component.html',
   styleUrl: './subir-fichero-component.css',
-  imports: [FormsModule]
+  imports: [FormsModule],
+  providers: [ServiceFichero]
 })
-export class SubirFicheroComponent implements OnInit {
-  @ViewChild("cajafile") cajaFileRef!: ElementRef;
-  public fileContent: string;
-  public urlFileUpload!: string;
-  constructor(private _service: ServiceFichero) {
-    this.fileContent = "";
+export class SubirFicheroComponent {
+
+  public fichero: Fichero;
+  public base64string: string;
+  private file!: File;
+
+  constructor(
+    private _service: ServiceFichero
+  ){
+    this.fichero={
+      fileName: "",
+      fileContent: ""
+    }
+    this.base64string =""
   }
-  ngOnInit(): void {
-    
+
+  selectedFile(event: any): void{
+    this.file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      const parts = result.split(',');
+      if(parts.length===2){
+        this.base64string = parts[1]
+      }else{
+        this.base64string = result;
+      }
+      // Fichero lista para enviar
+      this.fichero.fileName = this.file.name;
+      this.fichero.fileContent = this.base64string;
+    }
+    reader.readAsDataURL(this.file);
   }
-  subirFichero(): void{
-    //ESTE ES EL FICHERO QUE DEBEMOS LEER
-    var file = this.cajaFileRef.nativeElement.files[0];
-    //ELIMINAMOS LAS BARRAS QUE INCLUYE EL TIPO FILE EN EL NAME
-    //YA QUE VIENE LA RUTA Y NECESITAMOS EL NOMBRE DEL FICHERO
-    var miPath = this.cajaFileRef.nativeElement.value.split("\\");
-    //NOS QUEDAMOS CON EL ULTIMO VALOR, QUE ES EL NOMBRE DEL FILE
-    var ficheroNombre = miPath[2];
-    console.log(ficheroNombre);
-    //CREAMOS UN LECTOR PARA LEER EL FICHERO
-    var reader = new FileReader();
-    reader.readAsArrayBuffer(file);
-    reader.onloadend = () => {
-      let buffer: ArrayBuffer;
-      buffer = reader.result as ArrayBuffer;
-      var base64: string;
-      //LA FUNCION btoa CONVIERTE BYTES A BASE64
-      base64 = btoa(
-        new Uint8Array(buffer)
-          .reduce((data, byte) => data + String.fromCharCode(byte), '')
-      );
-      
-      this.fileContent = base64;
-      var newFileModel = 
-        new Fichero(ficheroNombre, base64);
-        this._service.subirFichero(newFileModel).subscribe(response => {
-          console.log(response);
-          this.urlFileUpload = response.urlFile;
-        })
-    };
+
+  uploadFile(): void{
+    this._service.subirFichero(this.fichero).subscribe(()=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Fichero subido correctamente',
+        timer: 3000,
+        timerProgressBar: true
+      })
+    })
   }
+
 }
 

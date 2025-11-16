@@ -1,25 +1,15 @@
 <section class="upload-shell page-section">
   <article class="upload-card glass-card">
     <div class="upload-card__header">
-      <p class="chip">Laboratorio</p>
-      <h2>Centro de cargas</h2>
-      <p class="text-muted">
-        Comparte ficheros o recursos multimedia con tu staff técnico de forma rápida y segura.
-      </p>
+      <p class="chip">Gestión de archivos</p>
+      <h2>Subir fichero</h2>
     </div>
-    <form #fileForm="ngForm" class="upload-form">
+    <form #ficheroForm="ngForm" (ngSubmit)="uploadFile()" class="upload-form">
       <label class="upload-input">
-        <span>Seleccione un fichero</span>
-        <input type="file" name="cajafile" #cajafile />
+        <span>Seleccione imagen</span>
+        <input type="file" name="cajaimagen" (change)="selectedFile($event)" />
       </label>
-      <button type="button" class="cta-button" (click)="subirFichero()">Subir fichero</button>
+      <button type="submit" class="cta-button">Subir fichero</button>
     </form>
-    <p class="upload-output">{{ fileContent }}</p>
-    @if (urlFileUpload){
-    <figure class="upload-preview">
-      <img src="{{ urlFileUpload }}" alt="Vista previa del fichero subido" />
-      <figcaption class="text-muted">Vista previa</figcaption>
-    </figure>
-    }
   </article>
 </section>
