@@ -1,0 +1,47 @@
+<section class="fichajes-shell page-section">
+  <article class="fichajes-card glass-card">
+    <div class="fichajes-card__header">
+      <p class="chip">Transferencias</p>
+      <h2>Mercado de fichajes</h2>
+      <p>Gestiona los traspasos entre equipos de forma rápida y sencilla.</p>
+    </div>
+    <form #fichajesForm="ngForm" (ngSubmit)="traspasarJugador()" class="fichajes-form">
+      <div class="form-field">
+        <label class="form-label">
+          <span>⚽</span>
+          Seleccionar jugador
+        </label>
+        <select
+          name="selectjugadores"
+          #selectjugadores="ngModel"
+          [(ngModel)]="idJugador"
+          class="form-select"
+        >
+          @for(jugador of jugadores; track jugador){
+          <option [ngValue]="jugador.idJugador">{{ jugador.nombre }}</option>
+          }
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">
+          <span>🏆</span>
+          Equipo de destino
+        </label>
+        <select
+          name="selectequipos"
+          #selectequipos="ngModel"
+          [(ngModel)]="idEquipo"
+          class="form-select"
+        >
+          @for(equipo of equipos; track equipo){
+          <option [ngValue]="equipo.idEquipo">{{ equipo.nombre }}</option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="cta-button fichajes-submit">
+        Confirmar traspaso
+        <span aria-hidden="true">→</span>
+      </button>
+    </form>
+  </article>
+</section>

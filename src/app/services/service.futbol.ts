@@ -16,6 +16,12 @@ export class ServiceFutbol{
         private _activeRoute:ActivatedRoute
     ){}
 
+    getJugadores(): Observable<Array<Jugador>>{
+        let url = environment.urlApiEjemplos;
+        let request = "api/Jugadores";
+        return this._http.get<Array<Jugador>>(url + request);
+    }
+
     getJugadoresEquipo(idEquipo: number): Observable<Array<Jugador>> {
         let request = "api/jugadores/jugadoresequipos/" + idEquipo;
         let url = environment.urlApiEjemplos + request;
@@ -62,6 +68,12 @@ export class ServiceFutbol{
         let url = environment.urlApiEjemplos;
         let request = "api/Jugadores/" + idJugador;
         return this._http.delete(url + request)
+    }
+
+    traspasarJugador(idJugador: number, idEquipo: number): Observable<any>{
+        let url = environment.urlApiEjemplos;
+        let request = "api/Jugadores/" + idJugador + "/" + idEquipo;
+        return this._http.put(url + request, null);
     }
 
 
